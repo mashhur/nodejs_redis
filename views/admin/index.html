@@ -1,0 +1,94 @@
+<html>
+<head>
+	<style>
+		h4   {color:blue;}
+		p    {color:green;}
+		table {
+	 	   border-collapse: collapse;
+		}
+		table, th, td {
+			border: 0px solid black;
+	
+		td {
+		  text-align: center;
+		  vertical-align: middle;
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script>
+		$(document).ready(function(){
+	    	$("#reg_btn").click(function(){
+				window.location.replace("/registration/customer");
+	   	 	});
+	   	 	$("#reg_deal_btn").click(function(){
+				var deal_title = $("#deal_title").val();
+				var deal_desc  = $("#deal_desc").val();
+				var deal_price = $("#deal_price").val();
+				var deal_fee   = $("#deal_fee").val();
+				//alert("Title: " + title);
+				$.post("/registration/deal", 
+					{
+						title 	: deal_title, 
+						desc	: deal_desc,
+						price	: deal_price,
+						fee		: deal_fee
+					}, 
+					function(result){
+					alert("Result: " + result);
+				});
+	    	});
+		});
+	</script>
+</head>
+<body>
+	<!-- Customer registration section -->	
+	<Center>
+	<h4>Customer Registration</h4>
+	<table>
+	  <tr>
+	    <td>First Name</td>
+		<td><input type="text"/></td>
+	  </tr>
+	  <tr>
+		<td>Last Name</td>
+		<td><input type="text"/></td>
+	  </tr>
+	  <tr>
+		<td>Phone Number</td>
+		<td><input type="text"/></td>
+	  </tr>	
+	  <tr>	
+		<td>Address</td>
+		<td><input type="text"/></td>
+	  </tr>
+	</table><br>
+	<input type="button" Value="Register"/>
+	</Center>
+		
+	<!-- Deal registration section -->	
+	<Center>
+	<h4>Deal Registration</h4>
+	<table>
+	  <tr>
+	    <td>Title</td>
+		<td><input type="text" id="deal_title"/></td>
+	  </tr>
+	  <tr>
+		<td>Decription</td>
+		<td><input type="text" id="deal_desc"/></td>
+	  </tr>
+	  <tr>
+		<td>Price</td>
+		<td><input type="text" id="deal_price"/></td>
+	  </tr>	
+	  <tr>	
+		<td>Delivery fee</td>
+		<td><input type="text" id="deal_fee"/></td>
+	  </tr>
+	</table><br>
+	<input type="button" id="reg_deal_btn" Value="Register"/>
+	</Center>
+		
+		
+</body>
+</html>

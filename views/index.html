@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Customer/Deal Registration Panel</title>
+	
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script>
+		$(document).ready(function(){
+	        $.post("/deals", function(data, status) {
+	            //alert("Data: " + data + "\nStatus: " + status);
+				console.log(JSON.stringify(data));
+				
+				$('#deals_div').append(JSON.stringify(data));
+				//var deals = '<div>'+data+'</div>';
+				/*for (var i=1; i<=data.length; i++) {
+				    deals+='<div>'+data[i]+'</div>';
+				}*/
+				//document.getElementById('deals_div').innerHTML+= deals;
+				
+				//$("#deals_div").load(data);
+	        });
+				
+			// registration button clicked
+		    $("#reg_btn").click(function(){
+				window.location.replace("/registration");
+		    });
+			
+			// description button clicked
+		    $("#desc_btn").click(function(){
+				window.location.replace("/sales");
+		    });
+		});
+	</script>
+		
+</head>
+<body>
+	<center>
+		<h3>Shopping Platform</h3>
+		<button id="reg_btn">Customer/Deal Registration</button>
+		<button id="desc_btn">Sales Description</button>
+		
+		<h4>Today's promotion</h4>
+		<div id="deals_div"></div>
+	</center>
+</body>
+</html>
